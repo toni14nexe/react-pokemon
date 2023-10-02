@@ -27,7 +27,7 @@ export default function Login() {
   };
 
   return (
-    <Box sx={{ width: "50%" }} className="box">
+    <Box className="box">
       <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid xs={12}>
           <h3>Login</h3>
