@@ -1,8 +1,11 @@
-//import { useState } from "react";
 import "./App.css";
-import LoginForm from "./components/login/login";
+import Dashboard from "./pages/dashboard";
+import Login from "./pages/login";
+import Registration from "./pages/registration";
+import PageNotFound from "./pages/pageNotFound";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { yellow, deepOrange } from "@mui/material/colors";
+import { Routes, Route } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -12,11 +15,14 @@ const theme = createTheme({
 });
 
 function App() {
-  //const [count, setCount] = useState(0);
-
   return (
     <ThemeProvider theme={theme}>
-      <LoginForm />
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
     </ThemeProvider>
   );
 }
