@@ -10,8 +10,6 @@ import Correct from "@mui/icons-material/TaskAltOutlined";
 import Wrong from "@mui/icons-material/CloseOutlined";
 import Chip from "@mui/material/Chip";
 import { useNavigate } from "react-router-dom";
-import { AES } from "crypto-js";
-const passKey = process.env.USERS_PASS_KEY;
 
 export default function Register() {
   const [username, setUsername] = React.useState("");
@@ -26,7 +24,7 @@ export default function Register() {
 
   function register() {
     if (!isBtnDisabledHandler()) {
-      registration(username, AES.encrypt(password, passKey).toString())
+      registration(username, password)
         .then(() => navigate("/dashboard"))
         .catch((error) => {
           if (error?.response?.data?.includes("duplicate id"))

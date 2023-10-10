@@ -8,6 +8,7 @@ export default defineConfig({
     "process.env": {
       USERS_API_LINK: "http://localhost:5000", // use own API link
       USERS_PASS_KEY: "sEcReT_kEy", // use own Secret key
+      USERS_TOKEN_PASS_KEY: "sEcReT_kEy", // use own Secret key
     },
   },
 });
