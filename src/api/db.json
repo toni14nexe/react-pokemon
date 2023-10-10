@@ -1,0 +1,10 @@
+{
+  "users": [
+    {
+      "id": "test1234",
+      "username": "test1234",
+      "password": "U2FsdGVkX1+oBm9d3YzriF5JTAmimkfaN5DCQEeIpIA=",
+      "pokemons": []
+    }
+  ]
+}

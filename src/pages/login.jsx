@@ -4,27 +4,41 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Unstable_Grid2";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
-
-function login(name, password) {
-  if (!isBtnDisabledHandler(name, password)) {
-    console.log("login");
-  } else {
-    console.log("wrong login");
-  }
-}
-
-function isBtnDisabledHandler(name, password) {
-  if (name.length < 4 || password.length < 8) return true;
-  return false;
-}
+import Alert from "@mui/material/Alert";
+import { login } from "../stores/login";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [name, setName] = React.useState("");
+  const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const navigate = useNavigate();
+  const [alertMessage, setAlertMessage] = React.useState("");
 
   const handleKeyDown = (event) => {
-    if (event.key === "Enter") login(name, password);
+    if (event.key === "Enter") loginHandler();
   };
+
+  function loginHandler() {
+    if (!isBtnDisabledHandler()) {
+      login(username, password)
+        .then((response) => {
+          if (response) navigate("/dashboard");
+          else setAlertMessage("Wrong username or password!");
+        })
+        .catch(() => setAlertMessage(error?.message));
+    }
+  }
+
+  function isBtnDisabledHandler() {
+    if (username.length < 4 || password.length < 8) return true;
+    return false;
+  }
+
+  const loginAlert = alertMessage ? (
+    <Grid display="flex" justifyContent="center">
+      <Alert severity="error">{alertMessage}</Alert>
+    </Grid>
+  ) : undefined;
 
   return (
     <Box className="box">
@@ -34,11 +48,11 @@ export default function Login() {
         </Grid>
         <Grid xs={12}>
           <TextField
-            value={name}
+            value={username}
             id="outlined-basic"
             label="Username"
             variant="filled"
-            onChange={(value) => setName(value.target.value)}
+            onChange={(value) => setUsername(value.target.value)}
             onKeyDown={handleKeyDown}
           />
         </Grid>
@@ -56,8 +70,8 @@ export default function Login() {
         <Grid xs={12}>
           <Button
             variant="outlined"
-            onClick={() => login(name, password)}
-            disabled={isBtnDisabledHandler(name, password)}
+            onClick={() => loginHandler(username, password)}
+            disabled={isBtnDisabledHandler(username, password)}
           >
             Submit
           </Button>
@@ -66,6 +80,7 @@ export default function Login() {
           <Link href="registration">Go To Registration</Link>
         </Grid>
       </Grid>
+      <Box className="mt-1">{loginAlert}</Box>
     </Box>
   );
 }

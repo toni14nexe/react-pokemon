@@ -1,4 +1,6 @@
 import "./App.css";
+import "./helpers/helpers.css";
+import "./helpers/elementsMUI.css";
 import Dashboard from "./pages/dashboard";
 import Login from "./pages/login";
 import Registration from "./pages/registration";
