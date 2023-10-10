@@ -14,21 +14,8 @@ export async function login(username, password) {
       password ===
       AES.decrypt(response?.data?.password, passKey).toString(enc.Utf8)
     ) {
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          username: response?.data?.username,
-          hashPass: response?.data?.password,
-        })
-      );
-      localStorage.setItem(
-        "pokemons",
-        JSON.stringify(response?.data?.pokemons)
-      );
-      cookies.set(
-        "pass_token",
-        AES.encrypt(response?.data?.password, tokenKey).toString()
-      );
+      setLocalStorageData(response);
+      setCookie(response);
       return true;
     }
     return false;
@@ -36,4 +23,17 @@ export async function login(username, password) {
     console.error(error);
     return false;
   }
+}
+
+function setLocalStorageData(response) {
+  localStorage.setItem("username", response?.data?.username);
+  localStorage.setItem("pokemons", JSON.stringify(response?.data?.pokemons));
+}
+
+function setCookie(response) {
+  const crypt = AES.encrypt(response?.data?.password, tokenKey).toString();
+  cookies.set(
+    "pass_token",
+    AES.encrypt(response?.data?.password, tokenKey).toString()
+  );
 }

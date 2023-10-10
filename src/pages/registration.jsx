@@ -10,6 +10,8 @@ import Correct from "@mui/icons-material/TaskAltOutlined";
 import Wrong from "@mui/icons-material/CloseOutlined";
 import Chip from "@mui/material/Chip";
 import { useNavigate } from "react-router-dom";
+import { clearData } from "../stores/logout";
+import { login } from "../stores/login";
 
 export default function Register() {
   const [username, setUsername] = React.useState("");
@@ -18,6 +20,10 @@ export default function Register() {
   const [alertMessage, setAlertMessage] = React.useState("");
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+    clearData();
+  });
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter") register();
   };
@@ -25,7 +31,12 @@ export default function Register() {
   function register() {
     if (!isBtnDisabledHandler()) {
       registration(username, password)
-        .then(() => navigate("/dashboard"))
+        .then(() =>
+          login(username, password).then((response) => {
+            if (response) navigate("/dashboard");
+            else setAlertMessage("Something went wrong");
+          })
+        )
         .catch((error) => {
           if (error?.response?.data?.includes("duplicate id"))
             setAlertMessage("Username already exists!");

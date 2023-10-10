@@ -7,12 +7,17 @@ import Link from "@mui/material/Link";
 import Alert from "@mui/material/Alert";
 import { login } from "../stores/login";
 import { useNavigate } from "react-router-dom";
+import { clearData } from "../stores/logout";
 
 export default function Login() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const navigate = useNavigate();
   const [alertMessage, setAlertMessage] = React.useState("");
+
+  React.useEffect(() => {
+    clearData();
+  });
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") loginHandler();
