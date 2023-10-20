@@ -3,6 +3,7 @@ import { isUserValid } from "../stores/dashboardValidation";
 import { logout } from "../stores/logout";
 import { useNavigate } from "react-router-dom";
 import HeaderMenu from "../components/dashboard/HeaderMenu";
+import Footer from "../components/dashboard/Footer";
 
 let isChecked = false;
 
@@ -30,6 +31,7 @@ export default function Dashboard() {
   return (
     <>
       <HeaderMenu />
+      <Footer />
     </>
   );
 }

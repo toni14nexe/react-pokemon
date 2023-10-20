@@ -8,6 +8,7 @@ import Alert from "@mui/material/Alert";
 import { login } from "../stores/login";
 import { useNavigate } from "react-router-dom";
 import { clearData } from "../stores/logout";
+import Footer from "../components/dashboard/Footer";
 
 export default function Login() {
   const [username, setUsername] = React.useState("");
@@ -86,6 +87,7 @@ export default function Login() {
         </Grid>
       </Grid>
       <Box className="mt-1">{loginAlert}</Box>
+      <Footer />
     </Box>
   );
 }

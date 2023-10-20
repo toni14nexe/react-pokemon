@@ -1,4 +1,4 @@
-import "./HeaderMenu.css";
+import "./Dashboard.css";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
@@ -22,7 +22,7 @@ const pages = ["Play", "My Pokemon list", "All Pokemons"];
 const settings = ["Play", "My Pokemon list", "All Pokemons", "Logout"];
 const username = localStorage.getItem("username");
 
-export default function ResponsiveAppBar() {
+export default function HeaderMenu() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
@@ -76,7 +76,7 @@ export default function ResponsiveAppBar() {
               <Tooltip title="Open options">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
-                    alt={username.toUpperCase()}
+                    alt={username?.toUpperCase()}
                     src="/static/images/avatar/2.jpg"
                   />
                 </IconButton>

@@ -12,6 +12,7 @@ import Chip from "@mui/material/Chip";
 import { useNavigate } from "react-router-dom";
 import { clearData } from "../stores/logout";
 import { login } from "../stores/login";
+import Footer from "../components/dashboard/Footer";
 
 export default function Register() {
   const [username, setUsername] = React.useState("");
@@ -143,6 +144,7 @@ export default function Register() {
         </Grid>
       </Grid>
       <Box className="mt-1">{passwordAlert}</Box>
+      <Footer />
     </Box>
   );
 }
