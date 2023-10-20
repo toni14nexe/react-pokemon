@@ -5,6 +5,25 @@
       "username": "test1234",
       "password": "U2FsdGVkX1+oBm9d3YzriF5JTAmimkfaN5DCQEeIpIA=",
       "pokemons": []
+    },
+    {
+      "id": "toni5555",
+      "username": "toni5555",
+      "password": "U2FsdGVkX1+80bR6ZV9q7aeznlnFpk4y7OBFb1Q8nkk=",
+      "pokemons": [
+        {
+          "name": "aaaa",
+          "surname": "aaaa"
+        },
+        {
+          "name": "bbbb",
+          "surname": "bbbb"
+        },
+        {
+          "name": "cccc",
+          "surname": "cccc"
+        }
+      ]
     }
   ]
 }

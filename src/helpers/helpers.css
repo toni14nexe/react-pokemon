@@ -1,3 +1,7 @@
 .mt-1 {
   margin-top: var(--spacing-1);
 }
+
+.hover-pointer:hover {
+  cursor: pointer;
+}
