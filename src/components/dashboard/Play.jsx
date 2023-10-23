@@ -2,16 +2,30 @@ import "../Components.css";
 import React, { useEffect } from "react";
 import { observer, useLocalObservable } from "mobx-react-lite";
 import CircularProgress from "@mui/material/CircularProgress";
-import { getPlayingPokemonList, getPokemon } from "../../stores/pokemons";
+import {
+  getPlayingPokemonList,
+  getPokemon,
+  savePokemon,
+} from "../../stores/pokemons";
+import { getLoggedUserData, restartPokemons } from "../../stores/users";
 import Grid from "@mui/material/Unstable_Grid2";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import Check from "@mui/icons-material/Check";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import Clear from "@mui/icons-material/Clear";
 
 export default observer(() => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [isLaunched, setIsLauncehed] = React.useState(false);
   const [randomPokemon, setRandomPokemon] = React.useState(undefined);
   const [pokemonName, setPokemonName] = React.useState("");
+  const [savingData, setSavingData] = React.useState("");
+  const [allPokemonsGuessed, setAllPokemonsGuessed] = React.useState(false);
+  const [correctAnswer, setCorrectAnswer] = React.useState(false);
+  const [wrongAnswer, setWrongAnswer] = React.useState(false);
 
   const pokemonStore = useLocalObservable(() => ({
     guessingPokemons: [],
@@ -29,13 +43,17 @@ export default observer(() => {
     },
 
     getRandomNumber() {
-      setIsLoading(true);
-      const num = Math.round(Math.random() * (151 - 1) + 1);
-      const pokemonAlreadyMined = this.usersPokemons.some(
-        (pokemon) => pokemon.id === num
-      );
-      if (!pokemonAlreadyMined) this.getRandomPokemon(num);
-      else this.getRandomPokemon();
+      if (JSON.parse(localStorage.getItem("pokemons")).length === 151)
+        setAllPokemonsGuessed(true);
+      else {
+        setIsLoading(true);
+        const num = Math.round(Math.random() * (151 - 1) + 1);
+        const pokemonAlreadyMined = this.usersPokemons.some(
+          (pokemon) => pokemon.id === num
+        );
+        if (!pokemonAlreadyMined) this.getRandomPokemon(num);
+        else this.getRandomPokemon();
+      }
     },
 
     getRandomPokemon(id) {
@@ -43,13 +61,28 @@ export default observer(() => {
         .then((response) => setRandomPokemon(response))
         .finally(() => setIsLoading(false));
     },
+
+    pokemonNameCorrect(savingData, randomPokemon) {
+      setCorrectAnswer(true);
+      savingData.pokemons.push(randomPokemon);
+      setTimeout(() => {
+        savePokemon(savingData).finally(() => pokemonStore.getRandomNumber());
+        setCorrectAnswer(false);
+      }, 2500);
+    },
   }));
 
   useEffect(() => {
     setIsLauncehed(true);
-    if (isLaunched && !pokemonStore.guessingPokemons.length)
+    if (isLaunched && !pokemonStore.guessingPokemons.length) {
       pokemonStore.startPokemonStore();
+      getSavingData();
+    }
   });
+
+  function getSavingData() {
+    getLoggedUserData().then((response) => setSavingData(response));
+  }
 
   function isBtnDisabledHandler() {
     if (!pokemonName.length) return true;
@@ -57,53 +90,132 @@ export default observer(() => {
   }
 
   function refresh() {
-    console.log("refresh");
+    pokemonStore.getRandomNumber();
     setPokemonName("");
   }
 
   function submit() {
-    console.log("submit");
-    setPokemonName("");
+    if (pokemonName.length) {
+      if (pokemonName.toLowerCase() === randomPokemon.name)
+        pokemonStore.pokemonNameCorrect(savingData, randomPokemon);
+      else pokemonNameIncorrect();
+      setPokemonName("");
+    }
+  }
+
+  function pokemonNameIncorrect() {
+    setWrongAnswer(true);
+    setTimeout(() => {
+      pokemonStore.getRandomNumber();
+      setWrongAnswer(false);
+    }, 2500);
+  }
+
+  function restartGame() {
+    restartPokemons(savingData).then(() => {
+      setAllPokemonsGuessed(false);
+      pokemonStore.getRandomPokemon();
+    });
   }
 
   return (
     <div className="scrollable-block">
       {isLoading && <CircularProgress />}
-      {!isLoading && (
+      {allPokemonsGuessed && (
+        <div>
+          <Grid xs={12}>
+            <h3 className="scrollable-title">All Pokemons guessed</h3>
+          </Grid>
+          <Grid xs={12}>
+            <Button
+              className="ml-1"
+              variant="outlined"
+              onClick={() => restartGame()}
+            >
+              Restart game
+              <RefreshIcon className="btn-icon-fix" />
+            </Button>
+          </Grid>
+        </div>
+      )}
+      {!isLoading && !allPokemonsGuessed && (
         <Grid container spacing={2}>
           <Grid xs={12}>
             <h3 className="scrollable-title">Guess Pokemon name</h3>
           </Grid>
-          <Grid xs={12}>
-            <img className="guessing-img" src={randomPokemon.image} />
-          </Grid>
-          <Grid xs={12} className="mb-2">
-            <TextField
-              className="random-input"
-              value={pokemonName}
-              id="outlined-basic"
-              label="Pokemon name"
-              variant="filled"
-              onChange={(value) => setPokemonName(value.target.value)}
-            />
-          </Grid>
-          <Grid xs={12} className="mb-2">
-            <Button
-              className="mr-1"
-              variant="outlined"
-              onClick={() => refresh()}
-            >
-              Refresh
-            </Button>
-            <Button
-              className="ml-1"
-              variant="outlined"
-              onClick={() => submit()}
-              disabled={isBtnDisabledHandler()}
-            >
-              Submit
-            </Button>
-          </Grid>
+          {!wrongAnswer && !correctAnswer && (
+            <Grid xs={12}>
+              <Tooltip
+                title={`${randomPokemon.name[0].toUpperCase()}${randomPokemon.name.slice(
+                  1
+                )}`}
+                className="hover-pointer"
+              >
+                <HelpOutlineIcon />
+              </Tooltip>
+            </Grid>
+          )}
+          {!wrongAnswer && !correctAnswer && (
+            <Grid xs={12}>
+              <img className="guessing-img" src={randomPokemon.image} />
+            </Grid>
+          )}
+          {!wrongAnswer && !correctAnswer && (
+            <Grid xs={12} className="mb-2">
+              <TextField
+                className="random-input"
+                value={pokemonName}
+                id="outlined-basic"
+                label="Pokemon name"
+                variant="filled"
+                onChange={(value) => setPokemonName(value.target.value)}
+                onKeyDown={(key) => {
+                  if (key.code === "Enter") submit();
+                }}
+              />
+            </Grid>
+          )}
+          {!wrongAnswer && !correctAnswer && (
+            <Grid xs={12} className="mb-2">
+              <Button
+                className="mr-1"
+                variant="outlined"
+                onClick={() => refresh()}
+              >
+                Refresh
+                <RefreshIcon className="btn-icon-fix" />
+              </Button>
+              <Button
+                className="ml-1"
+                variant="outlined"
+                onClick={() => submit()}
+                disabled={isBtnDisabledHandler()}
+              >
+                Submit
+                <Check className="btn-icon-fix" />
+              </Button>
+            </Grid>
+          )}
+          {wrongAnswer && (
+            <Grid xs={12}>
+              <span className="color-danger">Wrong answer</span>
+            </Grid>
+          )}
+          {wrongAnswer && (
+            <Grid xs={12}>
+              <Clear fontSize="large" className="mb-2 color-danger" />
+            </Grid>
+          )}
+          {correctAnswer && (
+            <Grid xs={12}>
+              <span className="color-correct">Correct answer</span>
+            </Grid>
+          )}
+          {correctAnswer && (
+            <Grid xs={12}>
+              <Check fontSize="large" className="mb-2 color-correct" />
+            </Grid>
+          )}
         </Grid>
       )}
     </div>

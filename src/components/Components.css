@@ -9,7 +9,7 @@
   width: 100%;
   height: 30px;
   background-color: var(--color-primary-shadow);
-  color: white;
+  color: black;
   padding-top: 5px;
 }
 
@@ -71,6 +71,10 @@
   width: 250px;
 }
 
-.MuiInputBase-input {
-  color: black !important;
+.btn-icon-fix {
+  width: 20px !important;
+}
+
+.color-correct {
+  color: green !important;
 }

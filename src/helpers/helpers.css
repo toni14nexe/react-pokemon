@@ -21,3 +21,7 @@
 .hover-pointer:hover {
   cursor: pointer !important;
 }
+
+.color-danger {
+  color: red !important;
+}
