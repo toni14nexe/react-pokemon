@@ -1,7 +1,23 @@
 .mt-1 {
-  margin-top: var(--spacing-1);
+  margin-top: var(--spacing-1) !important;
+}
+
+.mb-1 {
+  margin-bottom: var(--spacing-1) !important;
+}
+
+.mb-2 {
+  margin-bottom: calc(2 * var(--spacing-1)) !important;
+}
+
+.ml-1 {
+  margin-left: var(--spacing-1) !important;
+}
+
+.mr-1 {
+  margin-right: var(--spacing-1) !important;
 }
 
 .hover-pointer:hover {
-  cursor: pointer;
+  cursor: pointer !important;
 }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { AES, enc } from "crypto-js";
 import { Cookies } from "react-cookie";
+import { logout } from "../stores/logout";
 const apiUrl = process.env.USERS_API_LINK;
 const tokenKey = process.env.USERS_TOKEN_PASS_KEY;
 
@@ -19,6 +20,21 @@ export async function isUserValid(navigate) {
   } catch (error) {
     throw error;
   }
+}
+
+export async function isUserValidRedirection(navigate) {
+  isUserValid(navigate)
+    .then(async (response) => {
+      if (!response) {
+        await logout(navigate);
+        navigate("/login");
+      }
+    })
+    .catch(async (error) => {
+      console.error(error);
+      await logout(navigate);
+      navigate("/login");
+    });
 }
 
 function isCookieValid(response) {

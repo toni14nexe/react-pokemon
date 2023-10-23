@@ -1,4 +1,4 @@
-import "./Dashboard.css";
+import "../Components.css";
 import BottomNavigation from "@mui/material/BottomNavigation";
 
 export default function Footer() {

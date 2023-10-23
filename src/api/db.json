@@ -12,16 +12,22 @@
       "password": "U2FsdGVkX1+80bR6ZV9q7aeznlnFpk4y7OBFb1Q8nkk=",
       "pokemons": [
         {
-          "name": "aaaa",
-          "surname": "aaaa"
+          "id": 100,
+          "name": "Pokemon name",
+          "image": "imageLink",
+          "hp": 30,
+          "attack": 50,
+          "defense": 50,
+          "speed": 50
         },
         {
-          "name": "bbbb",
-          "surname": "bbbb"
-        },
-        {
-          "name": "cccc",
-          "surname": "cccc"
+          "id": 110,
+          "name": "Pokemon name 2",
+          "image": "imageLink",
+          "hp": 30,
+          "attack": 50,
+          "defense": 50,
+          "speed": 50
         }
       ]
     }

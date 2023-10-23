@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { isUserValidRedirection } from "../stores/dashboardValidation";
 import { useNavigate } from "react-router-dom";
 import HeaderMenu from "../components/dashboard/HeaderMenu";
-import Play from "../components/dashboard/Play";
+import AllPokemons from "../components/all-pokemons/AllPokemons";
 import Footer from "../components/dashboard/Footer";
 
 let isChecked = false;
@@ -20,7 +20,7 @@ export default function Dashboard() {
   return (
     <>
       <HeaderMenu />
-      <Play />
+      <AllPokemons />
       <Footer />
     </>
   );
