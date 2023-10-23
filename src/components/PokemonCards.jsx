@@ -5,6 +5,9 @@ import Typography from "@mui/material/Typography";
 import Zoom from "@mui/material/Zoom";
 import LinearProgress from "@mui/material/LinearProgress";
 import { styled } from "@mui/material/styles";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { saveUserData } from "../stores/pokemons";
 
 export default function pokemonCard(props) {
   const HtmlTooltip = styled(({ className, ...props }) => (
@@ -20,6 +23,15 @@ export default function pokemonCard(props) {
     },
   }));
 
+  function changeFavoriteState(pokemon) {
+    props.userData.pokemons.forEach((arrayPokemon) => {
+      if (arrayPokemon.id === pokemon.id)
+        arrayPokemon.favorite = !arrayPokemon.favorite;
+      stop();
+    });
+    saveUserData(props.userData).then(() => props.onPokemonChange());
+  }
+
   return (
     <Grid container>
       {props.pokemons.map((pokemon) => (
@@ -31,8 +43,8 @@ export default function pokemonCard(props) {
                 <Typography color="inherit">HP: {pokemon.hp}</Typography>
                 <LinearProgress
                   variant="buffer"
-                  value={pokemon.hp}
-                  valueBuffer={100}
+                  value={(100 / 250) * pokemon.hp}
+                  valueBuffer={250}
                 />{" "}
                 <br />
                 <Typography color="inherit">
@@ -40,8 +52,8 @@ export default function pokemonCard(props) {
                 </Typography>
                 <LinearProgress
                   variant="buffer"
-                  value={pokemon.attack}
-                  valueBuffer={100}
+                  value={(100 / 134) * pokemon.attack}
+                  valueBuffer={134}
                 />
                 <br />
                 <Typography color="inherit">
@@ -49,15 +61,15 @@ export default function pokemonCard(props) {
                 </Typography>
                 <LinearProgress
                   variant="buffer"
-                  value={pokemon.defense}
-                  valueBuffer={100}
+                  value={(100 / 180) * pokemon.defense}
+                  valueBuffer={180}
                 />
                 <br />
                 <Typography color="inherit">Speed: {pokemon.speed}</Typography>
                 <LinearProgress
                   variant="buffer"
-                  value={pokemon.speed}
-                  valueBuffer={100}
+                  value={(100 / 150) * pokemon.speed}
+                  valueBuffer={150}
                   className="mb-1"
                 />
               </React.Fragment>
@@ -65,9 +77,28 @@ export default function pokemonCard(props) {
           >
             <div className="pokemon-card">
               <Grid container>
-                <Grid xs={12}>
-                  {`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
-                </Grid>
+                {!props.userData && (
+                  <Grid xs={12}>
+                    {`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
+                  </Grid>
+                )}
+                {props.userData && (
+                  <Grid xs={12}>
+                    {`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
+                    {!pokemon.favorite && (
+                      <FavoriteBorderIcon
+                        className="ml-1 favorite-icon hover-pointer"
+                        onClick={() => changeFavoriteState(pokemon)}
+                      />
+                    )}
+                    {pokemon.favorite && (
+                      <FavoriteIcon
+                        className="ml-1 favorite-icon hover-pointer"
+                        onClick={() => changeFavoriteState(pokemon)}
+                      />
+                    )}
+                  </Grid>
+                )}
                 <Grid xs={12}>
                   <img src={pokemon.image} />
                 </Grid>

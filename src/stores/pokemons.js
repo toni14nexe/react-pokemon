@@ -13,8 +13,12 @@ export async function getPlayingPokemonList() {
 
 export async function getPokemons() {
   let pokemons = [];
-  for (let id = 1; id <= 10; id++) pokemons.push(await getPokemon(id));
+  for (let id = 1; id <= 151; id++) pokemons.push(await getPokemon(id));
   return pokemons;
+}
+
+export async function getMyPokemonList() {
+  return JSON.parse(localStorage.getItem("pokemons"));
 }
 
 export async function getPokemon(id) {
@@ -34,7 +38,7 @@ export async function getPokemon(id) {
   }
 }
 
-export async function savePokemon(savingData) {
+export async function saveUserData(savingData) {
   try {
     const response = await axios.put(
       `${apiUrl}/users/${savingData.username}`,

@@ -78,3 +78,8 @@
 .color-correct {
   color: green !important;
 }
+
+.favorite-icon {
+  color: gold !important;
+  margin-bottom: -5px;
+}

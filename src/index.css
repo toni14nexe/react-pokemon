@@ -30,4 +30,5 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background: rgb(36, 36, 36, 0.65);
+  overflow: hidden;
 }

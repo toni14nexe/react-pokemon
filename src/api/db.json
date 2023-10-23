@@ -18,7 +18,8 @@
           "hp": 55,
           "attack": 70,
           "defense": 45,
-          "speed": 60
+          "speed": 60,
+          "favorite": true
         },
         {
           "id": 25,
@@ -27,7 +28,8 @@
           "hp": 35,
           "attack": 55,
           "defense": 40,
-          "speed": 90
+          "speed": 90,
+          "favorite": false
         },
         {
           "id": 92,
@@ -36,7 +38,8 @@
           "hp": 30,
           "attack": 35,
           "defense": 30,
-          "speed": 80
+          "speed": 80,
+          "favorite": true
         },
         {
           "id": 144,
@@ -45,7 +48,208 @@
           "hp": 90,
           "attack": 85,
           "defense": 100,
-          "speed": 85
+          "speed": 85,
+          "favorite": false
+        },
+        {
+          "id": 40,
+          "name": "wigglytuff",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/40.png",
+          "hp": 140,
+          "attack": 70,
+          "defense": 45,
+          "speed": 45,
+          "favorite": false
+        },
+        {
+          "id": 38,
+          "name": "ninetales",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png",
+          "hp": 73,
+          "attack": 76,
+          "defense": 75,
+          "speed": 100,
+          "favorite": true
+        },
+        {
+          "id": 32,
+          "name": "nidoran-m",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/32.png",
+          "hp": 46,
+          "attack": 57,
+          "defense": 40,
+          "speed": 50,
+          "favorite": true
+        },
+        {
+          "id": 124,
+          "name": "jynx",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png",
+          "hp": 65,
+          "attack": 50,
+          "defense": 35,
+          "speed": 95,
+          "favorite": false
+        },
+        {
+          "id": 63,
+          "name": "abra",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/63.png",
+          "hp": 25,
+          "attack": 20,
+          "defense": 15,
+          "speed": 90,
+          "favorite": true
+        },
+        {
+          "id": 122,
+          "name": "mr-mime",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png",
+          "hp": 40,
+          "attack": 45,
+          "defense": 65,
+          "speed": 90,
+          "favorite": false
+        },
+        {
+          "id": 114,
+          "name": "tangela",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/114.png",
+          "hp": 65,
+          "attack": 55,
+          "defense": 115,
+          "speed": 60,
+          "favorite": false
+        },
+        {
+          "id": 91,
+          "name": "cloyster",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/91.png",
+          "hp": 50,
+          "attack": 95,
+          "defense": 180,
+          "speed": 70,
+          "favorite": false
+        },
+        {
+          "id": 99,
+          "name": "kingler",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/99.png",
+          "hp": 55,
+          "attack": 130,
+          "defense": 115,
+          "speed": 75,
+          "favorite": false
+        },
+        {
+          "id": 119,
+          "name": "seaking",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png",
+          "hp": 80,
+          "attack": 92,
+          "defense": 65,
+          "speed": 68,
+          "favorite": false
+        },
+        {
+          "id": 43,
+          "name": "oddish",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/43.png",
+          "hp": 45,
+          "attack": 50,
+          "defense": 55,
+          "speed": 30,
+          "favorite": false
+        },
+        {
+          "id": 97,
+          "name": "hypno",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/97.png",
+          "hp": 85,
+          "attack": 73,
+          "defense": 70,
+          "speed": 67,
+          "favorite": false
+        },
+        {
+          "id": 48,
+          "name": "venonat",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/48.png",
+          "hp": 60,
+          "attack": 55,
+          "defense": 50,
+          "speed": 45,
+          "favorite": false
+        },
+        {
+          "id": 29,
+          "name": "nidoran-f",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/29.png",
+          "hp": 55,
+          "attack": 47,
+          "defense": 52,
+          "speed": 41,
+          "favorite": false
+        },
+        {
+          "id": 83,
+          "name": "farfetchd",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/83.png",
+          "hp": 52,
+          "attack": 90,
+          "defense": 55,
+          "speed": 60,
+          "favorite": false
+        },
+        {
+          "id": 88,
+          "name": "grimer",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/88.png",
+          "hp": 80,
+          "attack": 80,
+          "defense": 50,
+          "speed": 25,
+          "favorite": false
+        },
+        {
+          "id": 51,
+          "name": "dugtrio",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/51.png",
+          "hp": 35,
+          "attack": 100,
+          "defense": 50,
+          "speed": 120,
+          "favorite": true
+        },
+        {
+          "id": 111,
+          "name": "rhyhorn",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/111.png",
+          "hp": 80,
+          "attack": 85,
+          "defense": 95,
+          "speed": 25,
+          "favorite": false
+        },
+        {
+          "id": 12,
+          "name": "butterfree",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
+          "hp": 60,
+          "attack": 45,
+          "defense": 50,
+          "speed": 70,
+          "favorite": false
+        },
+        {
+          "id": 39,
+          "name": "jigglypuff",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png",
+          "hp": 115,
+          "attack": 45,
+          "defense": 20,
+          "speed": 20,
+          "favorite": false
         }
       ]
     }

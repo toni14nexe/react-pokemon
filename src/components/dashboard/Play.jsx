@@ -5,7 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import {
   getPlayingPokemonList,
   getPokemon,
-  savePokemon,
+  saveUserData,
 } from "../../stores/pokemons";
 import { getLoggedUserData, restartPokemons } from "../../stores/users";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -64,9 +64,9 @@ export default observer(() => {
 
     pokemonNameCorrect(savingData, randomPokemon) {
       setCorrectAnswer(true);
-      savingData.pokemons.push(randomPokemon);
+      savingData.pokemons.push({ ...randomPokemon, favorite: false });
       setTimeout(() => {
-        savePokemon(savingData).finally(() => pokemonStore.getRandomNumber());
+        saveUserData(savingData).finally(() => pokemonStore.getRandomNumber());
         setCorrectAnswer(false);
       }, 2500);
     },
@@ -146,7 +146,7 @@ export default observer(() => {
           {!wrongAnswer && !correctAnswer && (
             <Grid xs={12}>
               <Tooltip
-                title={`${randomPokemon.name[0].toUpperCase()}${randomPokemon.name.slice(
+                title={`${randomPokemon?.name[0].toUpperCase()}${randomPokemon?.name.slice(
                   1
                 )}`}
                 className="hover-pointer"
@@ -157,7 +157,7 @@ export default observer(() => {
           )}
           {!wrongAnswer && !correctAnswer && (
             <Grid xs={12}>
-              <img className="guessing-img" src={randomPokemon.image} />
+              <img className="guessing-img" src={randomPokemon?.image} />
             </Grid>
           )}
           {!wrongAnswer && !correctAnswer && (
