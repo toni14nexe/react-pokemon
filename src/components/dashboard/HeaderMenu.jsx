@@ -1,5 +1,5 @@
 import "../Components.css";
-import * as React from "react";
+import React, { useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,6 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import Input from "@mui/material/Input";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../stores/logout";
 import { selectedNavbarBtn } from "../../helpers/navbarHelper";
@@ -21,7 +22,12 @@ const username = localStorage.getItem("username");
 
 export default function HeaderMenu() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [searchValue, setSearchValue] = React.useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setSearchValue(window.location.search.slice(7));
+  }, [window.location.search]);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -56,6 +62,14 @@ export default function HeaderMenu() {
     if (selectedNavbarBtn(page)) return "navbar-btn-underline";
   }
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") searchPokemons();
+  };
+
+  function searchPokemons() {
+    if (searchValue) navigate(`/search?value=${searchValue}`);
+  }
+
   return (
     <AppBar position="absolute" className="header">
       {
@@ -81,6 +95,15 @@ export default function HeaderMenu() {
                   </Typography>
                 </Button>
               ))}
+            </Box>
+            <Box className="mr-1">
+              <Input
+                placeholder="Search Pokemons"
+                value={searchValue}
+                size="small"
+                onChange={(value) => setSearchValue(value.target.value)}
+                onKeyDown={handleKeyDown}
+              />
             </Box>
             <Box>
               <Tooltip title="Open menu">

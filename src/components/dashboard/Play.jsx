@@ -165,7 +165,6 @@ export default observer(() => {
               <TextField
                 className="random-input"
                 value={pokemonName}
-                id="outlined-basic"
                 label="Pokemon name"
                 variant="filled"
                 onChange={(value) => setPokemonName(value.target.value)}

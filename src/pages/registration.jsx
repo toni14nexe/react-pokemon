@@ -87,7 +87,6 @@ export default function Register() {
         <Grid xs={12}>
           <TextField
             value={username}
-            id="outlined-basic"
             label="Username"
             variant="filled"
             onChange={(value) => setUsername(value.target.value)}
@@ -97,7 +96,6 @@ export default function Register() {
         <Grid xs={12}>
           <TextField
             value={password}
-            id="outlined-basic"
             label="Password"
             variant="filled"
             type="password"
@@ -108,7 +106,6 @@ export default function Register() {
         <Grid xs={12}>
           <TextField
             value={confirmPassword}
-            id="outlined-basic"
             label="Confirm password"
             variant="filled"
             type="password"

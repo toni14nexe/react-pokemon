@@ -35,15 +35,22 @@ export default function pokemonCard(props) {
 
   return (
     <Grid container>
-      <Grid xs={12} className="mb-1">
-        <b>{`Collected: ${props.collected} / 151`}</b>
-        <LinearProgress
-          variant="buffer"
-          value={(props.collected / 151) * 100}
-          valueBuffer={100}
-          className="mt-1 mb-1 ml-1 mr-1"
-        />
-      </Grid>
+      {props.collected && (
+        <Grid xs={12} className="mb-1">
+          <b>{`Collected: ${props.collected} / 151`}</b>
+          <LinearProgress
+            variant="buffer"
+            value={(props.collected / 151) * 100}
+            valueBuffer={100}
+            className="mt-1 mb-1 ml-1 mr-1"
+          />
+        </Grid>
+      )}
+      {props.searching && (
+        <Grid xs={12} className="mb-1">
+          <b>{`Searching: ${props.searching}`}</b>
+        </Grid>
+      )}
       {props.pokemons.map((pokemon) => (
         <Grid xs={4} key={pokemon.id || pokemon.name}>
           {pokemon.hp && (
@@ -140,6 +147,11 @@ export default function pokemonCard(props) {
           )}
         </Grid>
       ))}
+      {!props.pokemons.length && (
+        <Grid xs={12} className="mb-1">
+          No results...
+        </Grid>
+      )}
     </Grid>
   );
 }

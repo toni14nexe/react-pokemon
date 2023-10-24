@@ -55,7 +55,6 @@ export default function Login() {
         <Grid xs={12}>
           <TextField
             value={username}
-            id="outlined-basic"
             label="Username"
             variant="filled"
             onChange={(value) => setUsername(value.target.value)}
@@ -65,7 +64,6 @@ export default function Login() {
         <Grid xs={12}>
           <TextField
             value={password}
-            id="outlined-basic"
             label="Password"
             variant="filled"
             type="password"

@@ -9,6 +9,10 @@
   color: var(--color-primary-fade) !important;
 }
 
+.MuiInput-input {
+  color: var(--color-primary) !important;
+}
+
 /* BUTTON */
 .css-1hko0qt-MuiButtonBase-root-MuiButton-root.Mui-disabled {
   color: var(--color-primary-fade) !important;
