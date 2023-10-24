@@ -8,7 +8,7 @@ import { styled } from "@mui/material/styles";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import { saveUserData } from "../stores/pokemons";
+import { saveUserData } from "../stores/users";
 
 export default function pokemonCard(props) {
   const HtmlTooltip = styled(({ className, ...props }) => (

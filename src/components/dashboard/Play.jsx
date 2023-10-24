@@ -2,11 +2,8 @@ import "../Components.css";
 import React, { useEffect } from "react";
 import { observer, useLocalObservable } from "mobx-react-lite";
 import CircularProgress from "@mui/material/CircularProgress";
-import {
-  getPlayingPokemonList,
-  getPokemon,
-  saveUserData,
-} from "../../stores/pokemons";
+import { getPlayingPokemonList, getPokemon } from "../../stores/pokemons";
+import { saveUserData } from "../../stores/users";
 import { getLoggedUserData, restartPokemons } from "../../stores/users";
 import Grid from "@mui/material/Unstable_Grid2";
 import TextField from "@mui/material/TextField";

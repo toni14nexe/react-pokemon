@@ -17,7 +17,13 @@ import { logout } from "../../stores/logout";
 import { selectedNavbarBtn } from "../../helpers/navbarHelper";
 
 const pages = ["Play", "My Pokemon list", "All Pokemons"];
-const settings = ["Play", "My Pokemon list", "All Pokemons", "Logout"];
+const settings = [
+  "Play",
+  "My Pokemon list",
+  "All Pokemons",
+  "Settings",
+  "Logout",
+];
 const username = localStorage.getItem("username");
 
 export default function HeaderMenu() {

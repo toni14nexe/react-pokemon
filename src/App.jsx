@@ -7,6 +7,7 @@ import Registration from "./pages/registration";
 import MyPokemonList from "./pages/my-pokemon-list";
 import AllPokemons from "./pages/all-pokemons";
 import Search from "./pages/search";
+import Settings from "./pages/settings";
 import PageNotFound from "./pages/pageNotFound";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { yellow, deepOrange } from "@mui/material/colors";
@@ -29,6 +30,7 @@ function App() {
         <Route path="/my-pokemon-list" element={<MyPokemonList />} />
         <Route path="/all-pokemons" element={<AllPokemons />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </ThemeProvider>

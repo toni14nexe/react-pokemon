@@ -9,7 +9,7 @@
     {
       "id": "toni5555",
       "username": "toni5555",
-      "password": "U2FsdGVkX1+80bR6ZV9q7aeznlnFpk4y7OBFb1Q8nkk=",
+      "password": "U2FsdGVkX1+C+BCPrGiB1U30dSAd9qJW7qMIBHIpfYA=",
       "pokemons": [
         {
           "id": 58,
@@ -260,6 +260,16 @@
           "defense": 58,
           "speed": 80,
           "favorite": false
+        },
+        {
+          "id": 47,
+          "name": "parasect",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/47.png",
+          "hp": 60,
+          "attack": 95,
+          "defense": 80,
+          "speed": 30,
+          "favorite": true
         }
       ]
     }

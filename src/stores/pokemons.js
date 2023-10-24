@@ -31,17 +31,3 @@ export async function getPokemon(id) {
     console.error(error);
   }
 }
-
-export async function saveUserData(savingData) {
-  try {
-    const response = await axios.put(
-      `${apiUrl}/users/${savingData.username}`,
-      savingData
-    );
-    if (response)
-      localStorage.setItem("pokemons", JSON.stringify(savingData.pokemons));
-  } catch (error) {
-    console.error(error);
-    return false;
-  }
-}
