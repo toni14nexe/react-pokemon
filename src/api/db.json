@@ -250,6 +250,16 @@
           "defense": 20,
           "speed": 20,
           "favorite": false
+        },
+        {
+          "id": 5,
+          "name": "charmeleon",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
+          "hp": 58,
+          "attack": 64,
+          "defense": 58,
+          "speed": 80,
+          "favorite": false
         }
       ]
     }

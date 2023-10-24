@@ -13,6 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../stores/logout";
+import { selectedNavbarBtn } from "../../helpers/navbarHelper";
 
 const pages = ["Play", "My Pokemon list", "All Pokemons"];
 const settings = ["Play", "My Pokemon list", "All Pokemons", "Logout"];
@@ -41,54 +42,69 @@ export default function HeaderMenu() {
     }
   }
 
+  function logoClasses() {
+    if (window.location.pathname !== "/dashboard")
+      return "hover-pointer navbar-button";
+    else return "hover-not-allowed";
+  }
+
+  function menuClasses(page) {
+    if (!selectedNavbarBtn(page)) return "menu-btn";
+  }
+
+  function navbarClasses(page) {
+    if (selectedNavbarBtn(page)) return "navbar-btn-underline";
+  }
+
   return (
     <AppBar position="absolute" className="header">
       {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <div
-              className="logo hover-pointer"
+              className={`logo-div ${logoClasses()}`}
               onClick={() => goTo("dashboard")}
-            />
+            >
+              <div className="logo" />
+            </div>
             <Box sx={{ flexGrow: 1, display: { xs: "flex" } }}>
               {pages.map((page) => (
                 <Button
                   key={page}
                   onClick={() => goTo(page)}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{ my: 2 }}
+                  className={`ml-1 mr-1 navbar-button ${navbarClasses(page)}`}
+                  disabled={selectedNavbarBtn(page)}
                 >
-                  {page}
+                  <Typography className="color-black">
+                    <b>{page}</b>
+                  </Typography>
                 </Button>
               ))}
             </Box>
             <Box>
-              <Tooltip title="Open options">
+              <Tooltip title="Open menu">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
                     alt={username?.toUpperCase()}
                     src="/static/images/avatar/2.jpg"
+                    className="avatar"
                   />
                 </IconButton>
               </Tooltip>
               <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
                 anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((page) => (
                   <MenuItem key={page} onClick={() => goTo(page)}>
-                    <Typography textAlign="center">{page}</Typography>
+                    <Button
+                      className={menuClasses(page)}
+                      disabled={selectedNavbarBtn(page)}
+                    >
+                      {page}
+                    </Button>
                   </MenuItem>
                 ))}
               </Menu>

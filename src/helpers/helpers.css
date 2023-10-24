@@ -26,8 +26,16 @@
   cursor: pointer !important;
 }
 
+.hover-not-allowed:hover {
+  cursor: not-allowed !important;
+}
+
 .color-primary {
   color: var(--color-primary) !important;
+}
+
+.color-black {
+  color: black !important;
 }
 
 .color-danger {

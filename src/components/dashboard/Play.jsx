@@ -144,14 +144,14 @@ export default observer(() => {
             <h3 className="scrollable-title">Guess Pokemon name</h3>
           </Grid>
           {!wrongAnswer && !correctAnswer && (
-            <Grid xs={12}>
+            <Grid xs={12} className="pokemon-name-tooltip">
               <Tooltip
                 title={`${randomPokemon?.name[0].toUpperCase()}${randomPokemon?.name.slice(
                   1
                 )}`}
                 className="hover-pointer"
               >
-                <HelpOutlineIcon />
+                <HelpOutlineIcon className="color-primary" />
               </Tooltip>
             </Grid>
           )}

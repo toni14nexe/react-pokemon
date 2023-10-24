@@ -22,6 +22,10 @@ export default observer(() => {
             myResponse.forEach(
               (pokemon) => (this.pokemons[pokemon.id - 1] = pokemon)
             );
+            this.pokemons = this.pokemons.sort((pokemon1, pokemon2) => {
+              if (pokemon1.name < pokemon2.name) return -1;
+              else return 1;
+            });
           })
           .finally(() => setIsLoading(false))
       );

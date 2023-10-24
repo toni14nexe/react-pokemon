@@ -16,7 +16,12 @@ export default observer(() => {
 
     getPokemons() {
       getMyPokemonList()
-        .then((response) => (this.pokemons = response))
+        .then((response) => {
+          this.pokemons = response.sort((pokemon1, pokemon2) => {
+            if (pokemon1.name < pokemon2.name) return -1;
+            else return 1;
+          });
+        })
         .finally(() => setIsLoading(false));
     },
   }));
