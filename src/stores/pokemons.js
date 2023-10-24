@@ -11,12 +11,6 @@ export async function getPlayingPokemonList() {
   }
 }
 
-export async function getPokemons() {
-  let pokemons = [];
-  for (let id = 1; id <= 151; id++) pokemons.push(await getPokemon(id));
-  return pokemons;
-}
-
 export async function getMyPokemonList() {
   return JSON.parse(localStorage.getItem("pokemons"));
 }

@@ -44,6 +44,7 @@ export default observer(() => {
         <PokemonCards
           pokemons={pokemonStore.pokemons}
           userData={userData}
+          collected={pokemonStore.pokemons.length}
           onPokemonChange={onPokemonChange}
         />
       )}
