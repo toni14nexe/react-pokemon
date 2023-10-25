@@ -16,7 +16,6 @@ import Clear from "@mui/icons-material/Clear";
 
 export default observer(() => {
   const [isLoading, setIsLoading] = React.useState(true);
-  const [isLaunched, setIsLauncehed] = React.useState(false);
   const [randomPokemon, setRandomPokemon] = React.useState(undefined);
   const [pokemonName, setPokemonName] = React.useState("");
   const [savingData, setSavingData] = React.useState("");
@@ -40,23 +39,25 @@ export default observer(() => {
     },
 
     getRandomNumber() {
-      if (JSON.parse(localStorage.getItem("pokemons")).length === 151)
+      if (JSON.parse(localStorage.getItem("pokemons"))?.length === 151) {
         setAllPokemonsGuessed(true);
-      else {
+        setIsLoading(false);
+      } else {
         setIsLoading(true);
         const num = Math.round(Math.random() * (151 - 1) + 1);
         const pokemonAlreadyMined = this.usersPokemons.some(
           (pokemon) => pokemon.id === num
         );
         if (!pokemonAlreadyMined) this.getRandomPokemon(num);
-        else this.getRandomPokemon();
+        else this.getRandomNumber();
       }
     },
 
     getRandomPokemon(id) {
-      getPokemon(id)
-        .then((response) => setRandomPokemon(response))
-        .finally(() => setIsLoading(false));
+      getPokemon(id).then((response) => {
+        setRandomPokemon(response);
+        setIsLoading(false);
+      });
     },
 
     pokemonNameCorrect(savingData, randomPokemon) {
@@ -70,12 +71,11 @@ export default observer(() => {
   }));
 
   useEffect(() => {
-    setIsLauncehed(true);
-    if (isLaunched && !pokemonStore.guessingPokemons.length) {
+    if (!pokemonStore.guessingPokemons.length) {
       pokemonStore.startPokemonStore();
       getSavingData();
     }
-  });
+  }, []);
 
   function getSavingData() {
     getLoggedUserData().then((response) => setSavingData(response));
@@ -125,7 +125,7 @@ export default observer(() => {
           </Grid>
           <Grid xs={12}>
             <Button
-              className="ml-1"
+              className="ml-1 mb-2"
               variant="outlined"
               onClick={() => restartGame()}
             >

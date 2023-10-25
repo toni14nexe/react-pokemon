@@ -1,12 +1,6 @@
 {
   "users": [
     {
-      "id": "test1234",
-      "username": "test1234",
-      "password": "U2FsdGVkX1+oBm9d3YzriF5JTAmimkfaN5DCQEeIpIA=",
-      "pokemons": []
-    },
-    {
       "id": "toni5555",
       "username": "toni5555",
       "password": "U2FsdGVkX18v6ui5CXRcKI40nkRVk0mu6QM8csViSAA=",
@@ -270,8 +264,24 @@
           "defense": 80,
           "speed": 30,
           "favorite": true
+        },
+        {
+          "id": 85,
+          "name": "dodrio",
+          "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/85.png",
+          "hp": 60,
+          "attack": 110,
+          "defense": 70,
+          "speed": 110,
+          "favorite": false
         }
       ]
+    },
+    {
+      "id": "empty",
+      "username": "empty",
+      "password": "U2FsdGVkX19eKpv2ZjspX9ZWyPmOYKcX1aHI2v5Qxsw=",
+      "pokemons": []
     }
   ]
 }
