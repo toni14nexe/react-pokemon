@@ -2,17 +2,21 @@ import React, { useEffect } from "react";
 import { observer, useLocalObservable } from "mobx-react-lite";
 import CircularProgress from "@mui/material/CircularProgress";
 import { getLoggedUserData, changeUserPassword } from "../../stores/users";
+import { login } from "../../stores/login";
 import Grid from "@mui/material/Unstable_Grid2";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import Correct from "@mui/icons-material/TaskAltOutlined";
 import Wrong from "@mui/icons-material/CloseOutlined";
+import Toast from "../Toast";
 
-export default function Dashboard() {
+export default function Settings() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [passwordChangeToastTrigger, setPasswordChangeToastTrigger] =
+    React.useState(0);
 
   const userStore = useLocalObservable(() => ({
     userData: undefined,
@@ -23,11 +27,13 @@ export default function Dashboard() {
         .finally(() => setIsLoading(false));
     },
 
-    changePassword(password) {
+    changePassword(password, passwordChangeToastTrigger) {
       this.userData.password = password;
       changeUserPassword(this.userData).then(() => {
+        login(this.userData.username, password);
         setPassword("");
         setConfirmPassword("");
+        setPasswordChangeToastTrigger(passwordChangeToastTrigger + 1);
       });
     },
   }));
@@ -38,7 +44,7 @@ export default function Dashboard() {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && !isBtnDisabledHandler())
-      userStore.changePassword(password);
+      userStore.changePassword(password, passwordChangeToastTrigger);
   };
 
   function isBtnDisabledHandler() {
@@ -130,7 +136,9 @@ export default function Dashboard() {
           <Grid xs={12} className="mb-1">
             <Button
               variant="outlined"
-              onClick={() => userStore.changePassword(password)}
+              onClick={() =>
+                userStore.changePassword(password, passwordChangeToastTrigger)
+              }
               disabled={isBtnDisabledHandler()}
             >
               Submit
@@ -138,6 +146,11 @@ export default function Dashboard() {
           </Grid>
         </Grid>
       )}
+      <Toast
+        trigger={passwordChangeToastTrigger}
+        type="success"
+        message="Password changed succesfully"
+      />
     </div>
   );
 }
