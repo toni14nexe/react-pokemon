@@ -8,7 +8,6 @@ import { getLoggedUserData } from "../../stores/users";
 
 export default observer(() => {
   const [isLoading, setIsLoading] = React.useState(true);
-  const [isGetLaunched, setIsGetLauncehed] = React.useState(false);
   const [userData, setUserData] = React.useState(undefined);
 
   const pokemonStore = useLocalObservable(() => ({
@@ -22,17 +21,13 @@ export default observer(() => {
             else return 1;
           });
         })
-        .finally(() => setIsLoading(false));
+        .finally(() => {
+          setIsLoading(false);
+        });
     },
   }));
 
-  useEffect(() => {
-    setIsGetLauncehed(true);
-    if (isGetLaunched && !pokemonStore.pokemons.length) {
-      pokemonStore.getPokemons();
-      getUserData();
-    }
-  });
+  useEffect(() => pokemonStore.getPokemons(), []);
 
   function getUserData() {
     getLoggedUserData().then((response) => setUserData(response));

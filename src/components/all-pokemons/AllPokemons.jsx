@@ -7,7 +7,6 @@ import { getMyPokemonList, getPlayingPokemonList } from "../../stores/pokemons";
 
 export default observer(() => {
   const [isLoading, setIsLoading] = React.useState(true);
-  const [isGetLaunched, setIsGetLauncehed] = React.useState(false);
 
   const pokemonStore = useLocalObservable(() => ({
     pokemons: [],
@@ -32,10 +31,7 @@ export default observer(() => {
     },
   }));
 
-  useEffect(() => {
-    setIsGetLauncehed(true);
-    if (isGetLaunched && !pokemonStore.pokemons.length) pokemonStore.getData();
-  });
+  useEffect(() => pokemonStore.getData(), []);
 
   return (
     <div className="scrollable-block">
