@@ -35,7 +35,7 @@ export default function pokemonCard(props) {
 
   return (
     <Grid container>
-      {props.collected && (
+      {props.collected > -1 && (
         <Grid xs={12} className="mb-1">
           <b>{`Collected: ${props.collected} / 151`}</b>
           <LinearProgress
