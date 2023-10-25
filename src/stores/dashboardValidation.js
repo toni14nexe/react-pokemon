@@ -12,7 +12,7 @@ export async function isUserValid(navigate) {
   try {
     const response = await axios.get(`${apiUrl}/users/${username}`);
     if (response)
-      if (isCookieValid(response, username))
+      if (isCookieValid(response))
         if (isPokemonListValid(response)) return true;
         else throw new Error("Invalid pokemon list");
       else throw new Error("Invalid cookie");
