@@ -74,6 +74,7 @@ export default function HeaderMenu() {
 
   function searchPokemons() {
     if (searchValue) navigate(`/search?value=${searchValue}`);
+    else navigate("/all-pokemons");
   }
 
   return (
