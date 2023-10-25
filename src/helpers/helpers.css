@@ -41,3 +41,7 @@
 .color-danger {
   color: red !important;
 }
+
+.text-underline {
+  text-decoration: underline !important;
+}

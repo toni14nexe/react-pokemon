@@ -2,8 +2,9 @@
   "users": [
     {
       "id": "toni5555",
+      "email": "toni14nexe@gmail.com",
       "username": "toni5555",
-      "password": "U2FsdGVkX18v6ui5CXRcKI40nkRVk0mu6QM8csViSAA=",
+      "password": "U2FsdGVkX18nsCHSUN9dQkeCUF+BpIVR366V01M1/fA=",
       "pokemons": [
         {
           "id": 58,
@@ -276,12 +277,6 @@
           "favorite": false
         }
       ]
-    },
-    {
-      "id": "empty",
-      "username": "empty",
-      "password": "U2FsdGVkX19eKpv2ZjspX9ZWyPmOYKcX1aHI2v5Qxsw=",
-      "pokemons": []
     }
   ]
 }

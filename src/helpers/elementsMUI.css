@@ -2,10 +2,7 @@
 .MuiInputBase-input {
   color: var(--color-primary) !important;
 }
-.css-1d3vil4-MuiFormLabel-root-MuiInputLabel-root {
-  color: var(--color-primary-fade) !important;
-}
-.css-3dg9oc-MuiFormLabel-root-MuiInputLabel-root {
+.MuiInputLabel-root {
   color: var(--color-primary-fade) !important;
 }
 

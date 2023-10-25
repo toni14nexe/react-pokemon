@@ -81,6 +81,9 @@ export default function Login() {
           </Button>
         </Grid>
         <Grid xs={12}>
+          <Link href="forgot-password">Forgot password?</Link>
+        </Grid>
+        <Grid xs={12}>
           <Link href="registration">Go To Registration</Link>
         </Grid>
       </Grid>

@@ -8,6 +8,8 @@ import MyPokemonList from "./pages/my-pokemon-list";
 import AllPokemons from "./pages/all-pokemons";
 import Search from "./pages/search";
 import Settings from "./pages/settings";
+import ForgotPassword from "./pages/forgot-password";
+import Reset from "./pages/reset";
 import PageNotFound from "./pages/pageNotFound";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { yellow, deepOrange } from "@mui/material/colors";
@@ -31,6 +33,8 @@ function App() {
         <Route path="/all-pokemons" element={<AllPokemons />} />
         <Route path="/search" element={<Search />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset" element={<Reset />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </ThemeProvider>
