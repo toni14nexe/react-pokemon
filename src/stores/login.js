@@ -12,7 +12,8 @@ export async function login(username, password) {
     const response = await axios.get(`${apiUrl}/users/${username}`);
     if (
       password ===
-      AES.decrypt(response?.data?.password, passKey).toString(enc.Utf8)
+        AES.decrypt(response?.data?.password, passKey).toString(enc.Utf8) &&
+      response?.data?.verified
     ) {
       setLocalStorageData(response);
       setCookie(response);

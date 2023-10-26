@@ -15,7 +15,7 @@ import { findUserByEmail } from "../stores/users";
 const webAppLink = process.env.WEB_APP_LINK;
 const emailjsPublicKey = process.env.EMAILJS_PUBLIC_KEY;
 const emailjsServiceId = process.env.EMAILJS_SERVICE_ID;
-const emailjsTemplateId = process.env.EMAILJS_TEMPLATE_ID;
+const emailjsTemplateId = process.env.EMAILJS_RESET_TEMPLATE_ID;
 
 export default function Login() {
   const [email, setEmail] = React.useState("");

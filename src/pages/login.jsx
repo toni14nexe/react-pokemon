@@ -29,7 +29,7 @@ export default function Login() {
       login(username, password)
         .then((response) => {
           if (response) navigate("/dashboard");
-          else setAlertMessage("Wrong username or password!");
+          else setAlertMessage("Wrong login data!");
         })
         .catch(() => setAlertMessage(error?.message));
     }

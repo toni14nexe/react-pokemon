@@ -10,6 +10,7 @@ import Search from "./pages/search";
 import Settings from "./pages/settings";
 import ForgotPassword from "./pages/forgot-password";
 import Reset from "./pages/reset";
+import Verification from "./pages/verification";
 import PageNotFound from "./pages/pageNotFound";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { yellow, deepOrange } from "@mui/material/colors";
@@ -35,6 +36,7 @@ function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset" element={<Reset />} />
+        <Route path="/verification" element={<Verification />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </ThemeProvider>

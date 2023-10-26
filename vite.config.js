@@ -13,7 +13,8 @@ export default defineConfig({
       USERS_TOKEN_PASS_KEY: "sEcReT_kEy", // use own Secret key
       EMAILJS_PUBLIC_KEY: "", // use own emailjs public key - register on www.emailjs.com and create it - free & simple
       EMAILJS_SERVICE_ID: "", // use own emailjs service id - register on www.emailjs.com and create it - free & simple
-      EMAILJS_TEMPLATE_ID: "", // use own emailjs template id - register on www.emailjs.com and create it - free & simple
+      EMAILJS_RESET_TEMPLATE_ID: "", // use own emailjs template id - register on www.emailjs.com and create it - free & simple
+      EMAILJS_VERIFY_TEMPLATE_ID: "", // use own emailjs template id - register on www.emailjs.com and create it - free & simple
     },
   },
 });
