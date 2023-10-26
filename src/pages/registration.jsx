@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Unstable_Grid2";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
-import Alert from "@mui/material/Alert";
 import Typography from "@mui/material/Typography";
 import { registration } from "../stores/registration";
 import Correct from "@mui/icons-material/TaskAltOutlined";
@@ -15,6 +14,7 @@ import { clearData } from "../stores/logout";
 import Footer from "../components/dashboard/Footer";
 import { findUserByEmail } from "../stores/users";
 import emailjs from "@emailjs/browser";
+import Toast from "../components/Toast";
 
 const webAppLink = process.env.WEB_APP_LINK;
 const emailjsPublicKey = process.env.EMAILJS_PUBLIC_KEY;
@@ -26,7 +26,8 @@ export default function Register() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
-  const [alertMessage, setAlertMessage] = React.useState("");
+  const [toastMessage, setToastMessage] = React.useState("");
+  const [toastTrigger, setToastTrigger] = React.useState(0);
   const [registred, setRegistred] = React.useState(false);
   const navigate = useNavigate();
 
@@ -42,19 +43,23 @@ export default function Register() {
     if (!isBtnDisabledHandler()) {
       findUserByEmail(email)
         .then((response) => {
-          if (response === "E-mail already registered!")
-            setAlertMessage(response);
+          if (response === "E-mail already registered!") showToast(response);
           else
             registration(username, password, email)
               .then((response) => sendEmail(response.cryptedPassword))
               .catch((error) => {
                 if (error?.response?.data?.includes("duplicate id"))
-                  setAlertMessage("Username already exists!");
+                  showToast("Username already exists!");
               })
-              .catch(() => setAlertMessage("Something went wrong"));
+              .catch(() => showToast("Something went wrong"));
         })
-        .catch(() => setAlertMessage("Something went wrong"));
+        .catch(() => showToast("Something went wrong"));
     }
+  }
+
+  function showToast(message) {
+    setToastMessage(message);
+    setToastTrigger(toastTrigger + 1);
   }
 
   async function sendEmail(cryptedPassword) {
@@ -89,12 +94,6 @@ export default function Register() {
       return true;
     return false;
   }
-
-  const passwordAlert = alertMessage ? (
-    <Grid display="flex" justifyContent="center">
-      <Alert severity="error">{alertMessage}</Alert>
-    </Grid>
-  ) : undefined;
 
   const correct = <Correct color="success" />;
   const wrong = <Wrong color="secondary" />;
@@ -188,7 +187,7 @@ export default function Register() {
             <Link href="login">Go To Login</Link>
           </Grid>
         </Grid>
-        <Box className="mt-1">{passwordAlert}</Box>
+        <Toast trigger={toastTrigger} type="error" message={toastMessage} />
         <Footer />
       </Box>
     );

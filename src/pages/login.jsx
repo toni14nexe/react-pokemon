@@ -4,17 +4,18 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Unstable_Grid2";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
-import Alert from "@mui/material/Alert";
 import { login } from "../stores/login";
 import { useNavigate } from "react-router-dom";
 import { clearData } from "../stores/logout";
 import Footer from "../components/dashboard/Footer";
+import Toast from "../components/Toast";
 
 export default function Login() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const navigate = useNavigate();
-  const [alertMessage, setAlertMessage] = React.useState("");
+  const [toastMessage, setToastMessage] = React.useState("");
+  const [toastTrigger, setToastTrigger] = React.useState(0);
 
   React.useEffect(() => {
     clearData();
@@ -29,22 +30,21 @@ export default function Login() {
       login(username, password)
         .then((response) => {
           if (response) navigate("/dashboard");
-          else setAlertMessage("Wrong login data!");
+          else showToast("Wrong login data!");
         })
-        .catch(() => setAlertMessage(error?.message));
+        .catch(() => showToast(error?.message));
     }
+  }
+
+  function showToast(message) {
+    setToastMessage(message);
+    setToastTrigger(toastTrigger + 1);
   }
 
   function isBtnDisabledHandler() {
     if (username.length < 4 || password.length < 8) return true;
     return false;
   }
-
-  const loginAlert = alertMessage ? (
-    <Grid display="flex" justifyContent="center">
-      <Alert severity="error">{alertMessage}</Alert>
-    </Grid>
-  ) : undefined;
 
   return (
     <Box className="box">
@@ -87,7 +87,7 @@ export default function Login() {
           <Link href="registration">Go To Registration</Link>
         </Grid>
       </Grid>
-      <Box className="mt-1">{loginAlert}</Box>
+      <Toast trigger={toastTrigger} type="error" message={toastMessage} />
       <Footer />
     </Box>
   );
